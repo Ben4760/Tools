@@ -1,0 +1,57 @@
+@echo off
+:: Check if script is running as administrator
+NET SESSION >nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+    echo This script requires administrative privileges. Please run it as an administrator.
+    pause
+    exit /b
+)
+
+:: Create new user BD_user with password gc1t#123
+echo Adding user BD_user...
+net user BD_user gc1t#123 /add
+
+:: Show all users
+echo Listing users...
+net user
+
+:: Add BD_user to Remote Management Users group
+echo Adding BD_user to Remote Management Users group...
+net localgroup "Remote Management Users" BD_user /add
+
+:: Enable PowerShell Remoting
+echo Enabling PowerShell remoting...
+powershell -Command "Enable-PSRemoting -Force"
+
+:: Get current Execution Policy
+echo Current Execution Policy:
+powershell -Command "Get-ExecutionPolicy"
+
+:: Set Execution Policy to Unrestricted
+echo Setting Execution Policy to Unrestricted...
+powershell -Command "Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force"
+
+:: Verify new Execution Policy
+echo New Execution Policy:
+powershell -Command "Get-ExecutionPolicy"
+
+:: Install Carbon module
+echo Installing Carbon module...
+powershell -Command "Install-Module Carbon -Force -Scope CurrentUser"
+
+:: Import Carbon module
+echo Importing Carbon module...
+powershell -Command "Import-Module Carbon"
+
+:: Grant SeBackupPrivilege to BD_user
+echo Granting SeBackupPrivilege to BD_user...
+powershell -Command "Grant-Privilege -Identity BD_user -Privilege SeBackupPrivilege"
+
+:: Test SeBackupPrivilege for BD_user
+echo Testing SeBackupPrivilege for BD_user...
+powershell -Command "Test-Privilege -Identity BD_user -Privilege SeBackupPrivilege"
+
+:: End of script
+echo Script execution complete.
+pause
+

@@ -1,0 +1,91 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background:#f4f6f8; color:#222; padding:24px; }
+    .container { max-width:760px; margin:20px auto; background:#fff; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,.06); padding:20px; }
+    header { border-left:6px solid #e53935; padding-left:12px; margin-bottom:16px;}
+    h1 { font-size:20px; margin:0 0 6px; }
+    p.lead { margin:0 0 12px; color:#555; }
+    .warning { background:#fff3cd; border:1px solid #ffeeba; padding:12px; border-radius:6px; color:#6a4b00; }
+    .meta { font-size:13px; color:#666; margin-top:12px; }
+    a.fake-link { display:inline-block; margin-top:14px; padding:10px 14px; background:#e53935; color:#fff; text-decoration:none; border-radius:6px; }
+    a.fake-link:focus, a.fake-link:hover { opacity:.95; }
+    .evidence { margin-top:18px; padding:12px; background:#eef7ff; border-radius:6px; color:#044; }
+    footer { font-size:13px; color:#666; margin-top:18px; border-top:1px dashed #eee; padding-top:12px; }
+    .muted { color:#888; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <h1>MANDATORY Staff Awareness Training</h1>
+      <p class="lead">This website will be used to complete awareness training for staff. Please complete by the 1st of December 2025.</p>
+    </header>
+
+    <div class="warning" role="alert" aria-live="polite">
+      <strong>IMPORTANT:</strong> This training is mandatory, and must be completed by the 1st of December. If not completed by this date, the webpage will not be available and you will be noted as unsatisfactory for completion of training.
+    </div>
+
+    <section>
+      <h2>Training Details</h2>
+      <p class="muted">When completing training, ensure to watch all videos and take notes if needed. You could be asked about the details of this training at any time.</p>
+
+      <div class="evidence">
+        <strong>Training note:</strong>
+        <ul>
+          <li>Please complete as soon as possible</li>
+          <li>If there are issues with the website contact IT</li>
+          <li>At the end of this training you should be efficient in detecting a cyber threat, if the event were to occur.</li>
+        </ul>
+      </div>
+
+      <p style="margin-top:14px;">
+        <!-- CHANGE THIS href to a harmless test URL you control, e.g. http://10.0.0.5/training-fake -->
+        <a class="fake-link" id="payloadLink" href="http://192.168.100.1/fake-payload" target="_blank" rel="noopener noreferrer">
+          Continue to training
+        </a>
+      </p>
+
+      <div class="meta">
+        <strong>Exercise instructions (brief):</strong>
+        <ol>
+          <li>Tick the box below to acknowledge you have read the details before completing the training</li>
+          <li>Watch each video, while taking notes if needed</li>
+          <li>Complete questions after videos and submit</li>
+        </ol>
+      </div>
+
+      <h3 style="margin-top:18px;">Acknowledgement</h3>
+      <p class="muted">Before continuing, a participant should acknowledge they understand this is a controlled environment within the staff network.</p>
+      <form onsubmit="document.getElementById('ack').textContent = 'Acknowledged — proceed with training.'; return false;">
+        <label style="display:block; margin-bottom:8px;">
+          <input type="checkbox" required> I confirm I am authorised to complete this mandatory training.
+        </label>
+        <button type="submit" style="padding:8px 12px; border-radius:6px;">Acknowledge</button>
+      </form>
+      <p id="ack" style="margin-top:12px; color:#226; font-weight:600;"></p>
+    </section>
+
+    <footer>
+      <div class="muted">
+        <strong></strong> 
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Optional: make link show it's a training link if not changed
+    (function(){
+      var a = document.getElementById('payloadLink');
+      if (a.href.indexOf('example.com') !== -1) {
+        a.title = 'Training placeholder link — replace with a safe test URL you control.';
+      }
+    })();
+  </script>
+</body>
+</html>
+
+
