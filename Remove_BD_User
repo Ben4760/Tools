@@ -1,0 +1,37 @@
+:: Check if script is running as administrator
+NET SESSION >nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+    echo This script requires administrative privileges. Please run it as an administrator.
+    pause
+    exit /b
+)
+
+:: Remove user BD_user
+echo Removing user BD_user...
+net user BD_user /delete
+
+:: Remove user BD_users
+echo Removing user BD_users...
+net user BD_users /delete
+
+:: Remove user BDK_user
+echo Removing user BDK_user...
+net user BDK_user /delete
+
+:: Remove user bk_user
+echo Removing user bk_user...
+net user bk_user /delete
+
+:: Remove user test
+echo Removing user test...
+net user test /delete
+
+:: Remove user Test1
+echo Removing user Test1...
+net user Test1 /delete
+
+:: End of script
+echo Script execution complete.
+pause
+
+
